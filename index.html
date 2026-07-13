@@ -69,22 +69,9 @@
     gap: 10px;
   }
   .nav-logo-img {
-    height: 40px;
+    height: 44px;
     width: auto;
     display: block;
-  }
-
-  .logo-text {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #fff;
-  }
-  .logo-text--footer {
-    font-size: 11px;
-    color: rgba(255,255,255,0.35);
   }
 
   .nav-links {
@@ -836,7 +823,7 @@
     gap: 10px;
   }
   .footer-logo-img {
-    height: 42px;
+    height: 48px;
     width: auto;
     display: block;
   }
@@ -959,7 +946,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo"><img src="images/logo-mark.png" alt="Leeper Lawn Care logo" class="nav-logo-img"><span class="logo-text">Leeper Lawn Care</span></a>
+  <a href="#" class="nav-logo"><img src="images/logo-wide-dark.svg" alt="Leeper Lawn Care" class="nav-logo-img"></a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
@@ -1346,7 +1333,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo"><img src="images/logo-mark.png" alt="Leeper Lawn Care logo" class="footer-logo-img"><span class="logo-text logo-text--footer">Leeper Lawn Care</span></a>
+  <a href="#" class="footer-logo"><img src="images/logo-wide-dark.svg" alt="Leeper Lawn Care" class="footer-logo-img"></a>
   <p>© 2026 Leeper Lawn Care · St. Charles, IL</p>
   <ul class="footer-links">
     <li><a href="#services">Services</a></li>
@@ -1429,7 +1416,8 @@ function submitForm(e) {
     btn.disabled = false;
     btn.textContent = 'Request free quote →';
     alert('Something went wrong sending your request. Please call or text (331) 222-9532 and we\'ll get you taken care of.');
-  });
+  })
+  ;
 }
 
 // Service cards staggered
