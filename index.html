@@ -318,13 +318,12 @@
   /* BADGE BAR */
   .badge-bar {
     background: #3a7d42;
-    padding: 16px 5%;
+    padding: 24px 5%;
     display: flex;
-    gap: 40px;
-    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
     justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
   }
   .badge-item {
     display: flex;
@@ -335,8 +334,6 @@
     color: rgba(255,255,255,0.85);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    white-space: nowrap;
-    flex-shrink: 0;
   }
   .badge-item svg { width: 16px; height: 16px; stroke: #7ec880; fill: none; stroke-width: 2; stroke-linecap: round; }
 
