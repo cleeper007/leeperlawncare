@@ -511,18 +511,82 @@
   /* TESTIMONIALS */
   .testimonials-bg { background: #fff; }
 
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Carousel: one review per view. Card basis is exactly 100% of the
+     track and the track has no horizontal padding, so the last card's
+     snap offset lands exactly on max scroll and every card is reachable. */
+  .reviews-carousel { position: relative; margin-top: 40px; max-width: 720px; }
+
+  .reviews-track {
+    display: flex;
+    align-items: stretch;
     gap: 20px;
-    margin-top: 52px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 0 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .reviews-track::-webkit-scrollbar { display: none; }
+  .reviews-track:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 4px; }
 
   .testimonial-card {
     background: var(--cream);
     border-radius: 10px;
     padding: 28px;
     border: 1px solid var(--border);
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Push author block to the bottom so uneven text lengths still line up */
+  .testimonial-text { flex: 1; }
+
+  .reviews-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .reviews-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--green-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+  }
+  .reviews-arrow:hover:not(:disabled) { background: var(--green-light); border-color: var(--green-bright); }
+  .reviews-arrow:disabled { opacity: 0.35; cursor: default; }
+  .reviews-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+  .reviews-dots { display: flex; gap: 8px; margin-left: auto; }
+  .reviews-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .reviews-dot.active { background: var(--green-bright); transform: scale(1.35); }
+
+  @media (max-width: 768px) {
+    .reviews-arrow { display: none; }
+    .reviews-dots { margin: 0 auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-track { scroll-behavior: auto; }
   }
 
   .stars {
@@ -1114,8 +1178,9 @@
     5.0 · 5 Google reviews
   </p>
 
-  <div class="testimonials-grid" style="margin-top:40px;">
-    <div class="testimonial-card fade-up">
+  <div class="reviews-carousel">
+   <div class="reviews-track" id="reviewsTrack" tabindex="0" role="region" aria-label="Customer reviews, scrollable">
+    <div class="testimonial-card">
       <div class="stars">
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1133,7 +1198,7 @@
       </div>
     </div>
 
-    <div class="testimonial-card fade-up">
+    <div class="testimonial-card">
       <div class="stars">
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1151,7 +1216,7 @@
       </div>
     </div>
 
-    <div class="testimonial-card fade-up">
+    <div class="testimonial-card">
       <div class="stars">
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1169,7 +1234,7 @@
       </div>
     </div>
 
-    <div class="testimonial-card fade-up">
+    <div class="testimonial-card">
       <div class="stars">
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1187,7 +1252,7 @@
       </div>
     </div>
 
-    <div class="testimonial-card fade-up">
+    <div class="testimonial-card">
       <div class="stars">
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1204,6 +1269,17 @@
         </div>
       </div>
     </div>
+   </div>
+
+   <div class="reviews-controls">
+     <button class="reviews-arrow" id="reviewsPrev" aria-label="Previous review" onclick="scrollReviews(-1)">
+       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+     </button>
+     <button class="reviews-arrow" id="reviewsNext" aria-label="Next review" onclick="scrollReviews(1)">
+       <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+     </button>
+     <div class="reviews-dots" id="reviewsDots"></div>
+   </div>
   </div>
 </section>
 
@@ -1483,6 +1559,88 @@ function submitForm(e) {
   ;
 }
 
+// Reviews carousel
+const reviewsTrack = document.getElementById('reviewsTrack');
+const reviewsDots = document.getElementById('reviewsDots');
+const reviewCards = reviewsTrack ? Array.from(reviewsTrack.querySelectorAll('.testimonial-card')) : [];
+let reviewsAuto;
+
+function reviewStep() {
+  if (reviewCards.length < 2) return reviewsTrack.clientWidth;
+  return reviewCards[1].offsetLeft - reviewCards[0].offsetLeft;
+}
+
+function activeReview() {
+  return Math.round(reviewsTrack.scrollLeft / reviewStep());
+}
+
+function scrollReviews(dir) {
+  const maxIndex = reviewCards.length - 1;
+  let next = activeReview() + dir;
+  // Wrap around so the arrows never dead-end
+  if (next > maxIndex) next = 0;
+  if (next < 0) next = maxIndex;
+  reviewsTrack.scrollTo({ left: next * reviewStep(), behavior: 'smooth' });
+  stopReviewsAuto();
+}
+
+function goToReview(i) {
+  reviewsTrack.scrollTo({ left: i * reviewStep(), behavior: 'smooth' });
+  stopReviewsAuto();
+}
+
+function syncReviewsUI() {
+  const i = activeReview();
+  reviewsDots.querySelectorAll('.reviews-dot').forEach((d, n) => {
+    d.classList.toggle('active', n === i);
+  });
+}
+
+function startReviewsAuto() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  stopReviewsAuto();
+  reviewsAuto = setInterval(() => {
+    const next = activeReview() + 1;
+    reviewsTrack.scrollTo({
+      left: next > reviewCards.length - 1 ? 0 : next * reviewStep(),
+      behavior: 'smooth'
+    });
+  }, 5000);
+}
+
+function stopReviewsAuto() {
+  clearInterval(reviewsAuto);
+}
+
+if (reviewsTrack) {
+  reviewCards.forEach((c, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+    dot.onclick = () => goToReview(i);
+    reviewsDots.appendChild(dot);
+  });
+
+  let scrollTick;
+  reviewsTrack.addEventListener('scroll', () => {
+    clearTimeout(scrollTick);
+    scrollTick = setTimeout(syncReviewsUI, 60);
+  });
+
+  // Pause auto-advance while the visitor is reading or interacting
+  ['mouseenter', 'touchstart', 'focusin'].forEach(e =>
+    reviewsTrack.addEventListener(e, stopReviewsAuto, { passive: true })
+  );
+  reviewsTrack.addEventListener('mouseleave', startReviewsAuto);
+
+  syncReviewsUI();
+
+  // Only auto-advance while the section is actually on screen
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => e.isIntersecting ? startReviewsAuto() : stopReviewsAuto());
+  }, { threshold: 0.3 }).observe(reviewsTrack);
+}
+
 // Service cards staggered
 const serviceObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1501,7 +1659,7 @@ const animObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const el = entry.target;
-      const group = el.closest('.why-grid, .testimonials-grid, .faq-list, .badge-bar, .contact-inner');
+      const group = el.closest('.why-grid, .faq-list, .badge-bar, .contact-inner');
       let delay = 0;
       if (group) {
         const siblings = Array.from(group.querySelectorAll('.fade-up, .fade-left, .fade-right'));
