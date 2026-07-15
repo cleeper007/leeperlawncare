@@ -456,23 +456,10 @@
   }
 
   .service-row {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 28px;
     padding: 32px 0;
     border-bottom: 1px solid var(--border);
-    align-items: start;
   }
   .service-row:first-child { border-top: 1px solid var(--border); }
-
-  .service-big-num {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    color: #bbb;
-    padding-top: 6px;
-  }
 
   .service-name {
     font-family: 'Barlow Condensed', sans-serif;
@@ -493,7 +480,6 @@
   @media (max-width: 768px) {
     .services-editorial { grid-template-columns: 1fr; gap: 32px; }
     .services-title-col { position: static; }
-    .service-row { grid-template-columns: 40px 1fr; gap: 16px; }
     /* Keep the tall crop rather than squashing it to a letterbox,
        which would lose the edge line the shot is about */
     .services-photo { max-width: 340px; }
@@ -1225,18 +1211,12 @@
     </div>
     <div class="services-list">
       <div class="service-row fade-up">
-        <span class="service-big-num">01</span>
-        <div>
-          <p class="service-name">Weekly Mowing</p>
-          <p class="service-desc">Consistent cuts on a set schedule. We mow, trim edges, and blow off hard surfaces every visit.</p>
-        </div>
+        <p class="service-name">Weekly Mowing</p>
+        <p class="service-desc">Consistent cuts on a set schedule. We mow, trim edges, and blow off hard surfaces every visit.</p>
       </div>
       <div class="service-row fade-up">
-        <span class="service-big-num">02</span>
-        <div>
-          <p class="service-name">One-time Cuts</p>
-          <p class="service-desc">Moving soon or need a cleanup before guests arrive? We handle one-off jobs too.</p>
-        </div>
+        <p class="service-name">One-time Cuts</p>
+        <p class="service-desc">Moving soon or need a cleanup before guests arrive? We handle one-off jobs too.</p>
       </div>
     </div>
 
