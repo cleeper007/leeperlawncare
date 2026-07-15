@@ -393,14 +393,27 @@
 
   .services-editorial {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 80px;
+    grid-template-columns: 200px 1fr 300px;
+    gap: 60px;
     align-items: start;
   }
 
   .services-title-col {
     position: sticky;
     top: 90px;
+  }
+
+  .services-photo {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+  .services-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   .service-row {
@@ -442,6 +455,9 @@
     .services-editorial { grid-template-columns: 1fr; gap: 32px; }
     .services-title-col { position: static; }
     .service-row { grid-template-columns: 40px 1fr; gap: 16px; }
+    /* Keep the tall crop rather than squashing it to a letterbox,
+       which would lose the edge line the shot is about */
+    .services-photo { max-width: 340px; }
   }
 
   /* WHY */
@@ -1166,6 +1182,10 @@
           <p class="service-desc">Moving soon or need a cleanup before guests arrive? We handle one-off jobs too.</p>
         </div>
       </div>
+    </div>
+
+    <div class="services-photo fade-right">
+      <img src="images/lawn-edge.jpg" alt="Clean trimmed lawn edge along a driveway in St. Charles, IL" loading="lazy">
     </div>
   </div>
 </section>
